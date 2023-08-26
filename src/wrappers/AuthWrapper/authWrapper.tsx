@@ -8,14 +8,15 @@ import { useQuery } from 'react-query';
 import { getProfile } from 'api/profile';
 import useProfile from 'hooks/useProfile';
 
-const Tasks = lazy(() => import('pages/Tasks'));
+const Tasks = lazy(() => import('pages/admin/Tasks'));
+const Login = lazy(() => import('pages/admin/Login/login'));
 
 export default function PageWrapper() {
-  const isAuthenticated = !!Cookies.get('token');
-  const { profile } = useProfile(isAuthenticated);
+  // const isAuthenticated = !!Cookies.get('token');
+  // const { profile } = useProfile(isAuthenticated);
 
-  if (!isAuthenticated) return <Redirect to="/login" />;
-  if (!profile) return <Redirect to="profile" />;
+  // if (!isAuthenticated) return <Redirect to="/admin/login" />;
+  // if (!profile) return <Redirect to="profile" />;
   return (
     <div className={styles.pageWrapper}>
       <SideNav />
@@ -24,6 +25,7 @@ export default function PageWrapper() {
         <div className={styles.pageContent}>
           <Suspense fallback={null}>
             <Switch>
+              <Route path="/admin/login" component={Login} />
               <Route path="/admin/tasks" component={Tasks} />
             </Switch>
           </Suspense>

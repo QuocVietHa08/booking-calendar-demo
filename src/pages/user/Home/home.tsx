@@ -5,7 +5,9 @@ import styles from './home.module.scss';
 const Home = () => {
   return (
     <div className={styles.homeContainer}>
-     Home 
+      <p>
+        Home 
+      </p>
     </div>
   )
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import classNames from 'classnames';
-import { HomeOutlined, TableOutlined, SettingOutlined } from '@ant-design/icons';
+// import { HomeOutlined, TableOutlined, SettingOutlined } from '@ant-design/icons';
 import styles from './styles.module.scss';
 import useToggleSideNav from 'hooks/useToggleSideNav';
 
@@ -18,18 +18,18 @@ export default function SideNav() {
       key: '1',
       text: 'Home',
       url: '/',
-      icon: <HomeOutlined />,
+      // icon: <HomeOutlined />,
     },
     {
       key: '2',
       text: 'Tasks',
       url: '/tasks',
-      icon: <TableOutlined />,
+      // icon: <TableOutlined />,
     },
     {
       key: '3',
       text: 'Settings',
-      icon: <SettingOutlined />,
+      // icon: <SettingOutlined />,
       children: [
         {
           key: '3.1',
@@ -75,7 +75,7 @@ export default function SideNav() {
         {routes.map((route) => {
           if (route.children) {
             return (
-              <SubMenu key={route.key} icon={route.icon} title={route.text}>
+              <SubMenu key={route.key} title={route.text}>
                 {route.children?.map((childRoute) => (
                   <Menu.Item key={childRoute.key}>
                     <Link to={childRoute.url}>{childRoute.text}</Link>
@@ -85,9 +85,10 @@ export default function SideNav() {
             );
           }
           return (
-            <Menu.Item key={route.key} icon={route.icon}>
-              <Link to={route.url}>{route.text}</Link>
-            </Menu.Item>
+            <div>hello</div>
+            // <Menu.Item key={route.key} icon={route.icon}>
+            //   <Link to={route.url}>{route.text}</Link>
+            // </Menu.Item>
           );
         })}
       </Menu>
