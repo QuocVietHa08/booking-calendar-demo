@@ -8,7 +8,6 @@ const Home = lazy(() => import('pages/user/Home/home'));
 const Blog = lazy(() => import('pages/user/Blog/blog'));
 
 export default function UserPageWrapper() {
-
   return (
     <div className={styles.pageWrapper}>
       <Header />

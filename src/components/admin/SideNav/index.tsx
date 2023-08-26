@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import classNames from 'classnames';
-// import { HomeOutlined, TableOutlined, SettingOutlined } from '@ant-design/icons';
+import { HomeOutlined, TableOutlined, SettingOutlined } from '@ant-design/icons';
 import styles from './styles.module.scss';
 import useToggleSideNav from 'hooks/useToggleSideNav';
 
@@ -17,31 +17,32 @@ export default function SideNav() {
     {
       key: '1',
       text: 'Home',
-      url: '/',
-      // icon: <HomeOutlined />,
+      url: '/admin/',
+      icon: <HomeOutlined rev={undefined} />,
     },
     {
       key: '2',
       text: 'Tasks',
-      url: '/tasks',
-      // icon: <TableOutlined />,
+      url: '/admin/tasks',
+      icon: <TableOutlined rev={undefined} />,  
     },
     {
       key: '3',
       text: 'Settings',
-      // icon: <SettingOutlined />,
-      children: [
-        {
-          key: '3.1',
-          text: 'Setting 1',
-          url: '/settings/setting1',
-        },
-        {
-          key: '3.2',
-          text: 'Setting 2',
-          url: '/settings/setting2',
-        },
-      ],
+      icon: <SettingOutlined rev={undefined} />,
+      url: '/admin/setting'
+      // children: [
+      //   {
+      //     key: '3.1',
+      //     text: 'Setting 1',
+      //     url: '/admin/settings/setting1',
+      //   },
+      //   {
+      //     key: '3.2',
+      //     text: 'Setting 2',
+      //     url: '/settings/setting2',
+      //   },
+      // ],
     },
   ];
 
@@ -50,13 +51,13 @@ export default function SideNav() {
       if (location.pathname.startsWith(route.url || '###')) {
         setSelectedKey(route.key);
       }
-      if (route.children) {
-        route.children.forEach((childRoute) => {
-          if (location.pathname.startsWith(childRoute.url || '###')) {
-            setSelectedKey(childRoute.key);
-          }
-        });
-      }
+      // if (route.children) {
+      //   route.children.forEach((childRoute) => {
+      //     if (location.pathname.startsWith(childRoute.url || '###')) {
+      //       setSelectedKey(childRoute.key);
+      //     }
+      //   });
+      // }
     });
   }, [location.pathname]);
 
@@ -73,22 +74,22 @@ export default function SideNav() {
       </Link>
       <Menu selectedKeys={[selectedKey]} defaultOpenKeys={[]} mode="inline" inlineCollapsed={collapsed}>
         {routes.map((route) => {
-          if (route.children) {
-            return (
-              <SubMenu key={route.key} title={route.text}>
-                {route.children?.map((childRoute) => (
-                  <Menu.Item key={childRoute.key}>
-                    <Link to={childRoute.url}>{childRoute.text}</Link>
-                  </Menu.Item>
-                ))}
-              </SubMenu>
-            );
-          }
+          // if (route.children) {
+          //   return (
+          //     <SubMenu key={route.key} title={route.text}>
+          //       {route.children?.map((childRoute) => (
+          //         <Menu.Item key={childRoute.key}>
+          //           <Link to={childRoute.url}>{childRoute.text}</Link>
+          //         </Menu.Item>
+          //       ))}
+          //     </SubMenu>
+          //   );
+          // }
           return (
-            <div>hello</div>
-            // <Menu.Item key={route.key} icon={route.icon}>
-            //   <Link to={route.url}>{route.text}</Link>
-            // </Menu.Item>
+            // <div>hello</div>
+            <Menu.Item key={route.key} icon={route.icon}>
+              <Link to={route.url}>{route.text}</Link>
+            </Menu.Item>
           );
         })}
       </Menu>

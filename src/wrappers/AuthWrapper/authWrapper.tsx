@@ -1,32 +1,33 @@
-import React, { lazy, Suspense } from 'react';
-import Cookies from 'js-cookie';
-import PageHeader from 'components/admin/PageHeader';
-import SideNav from 'components/admin/SideNav';
-import { Redirect, Route, Switch } from 'react-router-dom';
-import styles from './authWrapper.module.scss';
-import { useQuery } from 'react-query';
-import { getProfile } from 'api/profile';
-import useProfile from 'hooks/useProfile';
+import React, { lazy, Suspense } from "react";
+import PageHeader from "components/admin/PageHeader";
+import SideNav from "components/admin/SideNav";
+import { Redirect, Switch, useLocation } from "react-router-dom";
+import styles from "./authWrapper.module.scss";
+import PrivateRoute from "./PrivateRoute";
+import Cookies from "js-cookie";
+import { history } from "App";
 
-const Tasks = lazy(() => import('pages/admin/Tasks'));
-const Login = lazy(() => import('pages/admin/Login/login'));
+const Tasks = lazy(() => import("pages/admin/Tasks"));
+const Login = lazy(() => import("pages/admin/Login/login"));
+const Home = lazy(() => import("pages/admin/Home/home"));
+const Setting = lazy(() => import("pages/admin/Setting/setting"));
 
-export default function PageWrapper() {
-  // const isAuthenticated = !!Cookies.get('token');
-  // const { profile } = useProfile(isAuthenticated);
+export default function AuthWrapper() {
+  const location = useLocation();
+  const isLogin = location.pathname === "/admin/login";
 
-  // if (!isAuthenticated) return <Redirect to="/admin/login" />;
-  // if (!profile) return <Redirect to="profile" />;
   return (
     <div className={styles.pageWrapper}>
-      <SideNav />
+      {!isLogin && <SideNav />}
       <div className={styles.mainWrapper}>
-        <PageHeader />
+        {!isLogin && <PageHeader />}
         <div className={styles.pageContent}>
           <Suspense fallback={null}>
             <Switch>
-              <Route path="/admin/login" component={Login} />
-              <Route path="/admin/tasks" component={Tasks} />
+              <PrivateRoute path="/admin/login" component={Login} />
+              <PrivateRoute path="/admin/tasks" component={Tasks} />
+              <PrivateRoute path="/admin/setting" component={Setting} />
+              <PrivateRoute path="/admin" component={Home} />
             </Switch>
           </Suspense>
         </div>

@@ -34,7 +34,7 @@ export default function Login() {
   };
 
   const isAuthenticated = !!Cookies.get('token');
-  if (isAuthenticated) return <Redirect to="/" />;
+  if (isAuthenticated) return <Redirect to="/admin" />;
 
   return (
     <div className={styles.loginContainer}>

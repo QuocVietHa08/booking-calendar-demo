@@ -39,7 +39,7 @@ export default function PageHeader() {
           <Dropdown overlay={menu} trigger={['click']}>
             <div>
               {/* <span>{`Hi ${profile?.fullName || profile?.username}!`}</span> */}
-              hello
+              <span>Hi Edward</span>
               &nbsp;
               <img className={styles.icon} src={avatarImg} alt="" />
             </div>
