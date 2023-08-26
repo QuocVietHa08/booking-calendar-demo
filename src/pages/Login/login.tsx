@@ -2,7 +2,7 @@ import React from 'react';
 import { Redirect, useHistory } from 'react-router-dom';
 import Cookies from 'js-cookie';
 import _ from 'lodash';
-import styles from './style.module.scss';
+import styles from './login.module.scss';
 import { Card, Input, Button, Form, Row, Checkbox } from 'antd';
 import { useTranslation } from 'react-i18next';
 import { login } from 'api/authentication';
@@ -16,14 +16,17 @@ export default function Login() {
   const handleSubmit = async (payload: any) => {
     const params = _.pick(payload, ['username', 'password']);
     try {
-      const data = await login(params);
-      const { token, refreshToken } = data.data;
-      Cookies.set('token', token, {
+
+      // call login action 
+
+      // const data = await login(params);
+      // const { token, refreshToken } = data.data;
+      Cookies.set('token', 'token', {
         expires: payload.rememberMe ? 999999 : undefined,
       });
-      Cookies.set('refreshToken', refreshToken, {
-        expires: payload.rememberMe ? 999999 : undefined,
-      });
+      // Cookies.set('refreshToken', refreshToken, {
+      //   expires: payload.rememberMe ? 999999 : undefined,
+      // });
       history.push('/');
     } catch (error) {
       handleErrorMessage(error);

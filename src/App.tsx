@@ -1,6 +1,6 @@
 import React, { Suspense } from 'react';
 import { createBrowserHistory } from 'history';
-import RootWrapper from './wrappers/RootWrapper';
+import RootWrapper from './wrappers/RootWrapper/rootWrapper';
 import { Router } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';

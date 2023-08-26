@@ -4,12 +4,12 @@ import avatarImg from 'assets/images/avatar.svg';
 import { useHistory } from 'react-router-dom';
 import styles from './styles.module.scss';
 import { Menu, Dropdown } from 'antd';
-import useProfile from 'hooks/useProfile';
+// import useProfile from 'hooks/useProfile';
 import useToggleSideNav from 'hooks/useToggleSideNav';
 
 export default function PageHeader() {
   const history = useHistory();
-  const { profile } = useProfile();
+  // const { profile } = useProfile();
 
   const { toggleSideNav } = useToggleSideNav();
 
@@ -38,7 +38,8 @@ export default function PageHeader() {
         <div className={styles.menuItem}>
           <Dropdown overlay={menu} trigger={['click']}>
             <div>
-              <span>{`Hi ${profile?.fullName || profile?.username}!`}</span>
+              {/* <span>{`Hi ${profile?.fullName || profile?.username}!`}</span> */}
+              hello
               &nbsp;
               <img className={styles.icon} src={avatarImg} alt="" />
             </div>

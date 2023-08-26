@@ -1,9 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import Cookies from 'js-cookie';
-import PageHeader from 'components/PageHeader';
-import SideNav from 'components/SideNav';
+import PageHeader from 'components/admin/PageHeader';
+import SideNav from 'components/admin/SideNav';
 import { Redirect, Route, Switch } from 'react-router-dom';
-import styles from './styles.module.scss';
+import styles from './authWrapper.module.scss';
 import { useQuery } from 'react-query';
 import { getProfile } from 'api/profile';
 import useProfile from 'hooks/useProfile';
@@ -15,7 +15,7 @@ export default function PageWrapper() {
   const { profile } = useProfile(isAuthenticated);
 
   if (!isAuthenticated) return <Redirect to="/login" />;
-  if (!profile) return null;
+  if (!profile) return <Redirect to="profile" />;
   return (
     <div className={styles.pageWrapper}>
       <SideNav />
@@ -24,7 +24,7 @@ export default function PageWrapper() {
         <div className={styles.pageContent}>
           <Suspense fallback={null}>
             <Switch>
-              <Route path="/tasks" component={Tasks} />
+              <Route path="/admin/tasks" component={Tasks} />
             </Switch>
           </Suspense>
         </div>
