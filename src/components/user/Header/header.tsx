@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from "./header.module.scss";
 import { Link } from "react-router-dom";
+import { useAppStore } from "store/useApp";
 
 const LightIcon = () => {
   return (
@@ -39,28 +40,41 @@ const DarkIcon = () => {
     </svg>
   );
 };
+
 const Header = () => {
-  const [isLightTheme, setIsLightTheme] = useState(false);
+  const { mode, toggleMode } = useAppStore();
 
   return (
-    <div className={styles.headerWrapper}>
+    <div
+      className={`${styles.headerWrapper} ${
+        mode === "dark" ? styles.headerDarkMode : ""
+      }`}
+    >
       <div className={styles.headerBanner}>
-        <Link className="all-unset cursor-pointer" to="/home">React Code Base</Link>
+        <Link className="all-unset cursor-pointer" to="/home">
+          React Code Base
+        </Link>
       </div>
       <div className={styles.headerMenu}>
         <ul>
-          <li>
+          <li className={mode === "dark" ? styles.textDarkMode : ""}>
             <Link to="/blog">Blog</Link>{" "}
           </li>
-          <li>Profile</li>
-          <li>Project</li>
+          <li className={mode === "dark" ? styles.textDarkMode : ""}>
+            <Link to="/profile">Profile</Link>
+          </li>
+          <li className={mode === "dark" ? styles.textDarkMode : ""}>
+            <Link to="/project">Project</Link>
+          </li>
           <li className={styles.setting}>Setting</li>
           <li>|</li>
           <button
-            className="all-unset cursor-pointer"
-            onClick={() => setIsLightTheme((prev) => !prev)}
+            className={`all-unset cursor-pointer ${
+              mode === "dark" ? styles.iconDarkMode : styles.iconLightMode
+            }`}
+            onClick={() => toggleMode()}
           >
-            {isLightTheme ? <LightIcon /> : <DarkIcon />}
+            {mode === "light" ? <LightIcon /> : <DarkIcon />}
           </button>
         </ul>
       </div>

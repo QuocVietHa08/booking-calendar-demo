@@ -11,3 +11,9 @@
   color: #9BA3AF;
   font-size: 12px;
 }
+
+.footerWrapperDarkMode {
+  @extend .footerWrapper;
+  background-color: #333;
+  color: white;
+}

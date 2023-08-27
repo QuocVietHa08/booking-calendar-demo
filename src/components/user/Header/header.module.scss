@@ -8,6 +8,10 @@
   border-bottom: 1px solid #E5E5E6;
 }
 
+.headerDarkMode {
+  background-color: #333 !important;
+}
+
 .headerBanner {
   cursor: pointer;
   color: rgb(81, 170, 200);
@@ -23,10 +27,31 @@
     display: flex;
     align-items: center;
     gap: 20px;
+
+    .textDarkMode {
+      color: white;
+      a {
+        color: white;
+        text-decoration: none;
+      }
+    }
+
     li {
       cursor: pointer;
       text-decoration: none;
       list-style: none;
+    }
+
+    .iconLightMode {
+      background-color: white;
+      padding: 3px 4px 0px 4px;
+      border-radius: 5px;
+    }
+
+    .iconDarkMode {
+      background-color: white;
+      padding: 3px 4px 0px 4px;
+      border-radius: 5px;
     }
 
     .setting {
