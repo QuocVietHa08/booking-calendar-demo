@@ -1,10 +1,62 @@
 @import 'react-big-calendar/lib/sass/styles';
 @import 'react-big-calendar/lib/addons/dragAndDrop/styles'; 
 
-.bg-red {
-  background-color: red;
+.h-full {
+  height: 100%;
+}
+.p-20 {
+  padding: 20px;
 }
 
-.height600 {
-  height: 600px;
+.p-10 {
+  padding: 10px;
+}
+
+.radius-10 {
+  border-radius: 10px;
+}
+
+.filter-section {
+  display: flex;
+  justify-content: space-between;
+}
+
+.calendar-page-container {
+  display: flex;
+  width: 100vw;
+  justify-content: space-between;
+}
+
+.filter-category {
+  width: 15%;
+  height: 100vh;
+  border: 1px solid #cccc;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.calendar-custome-wrapper {
+  width: 80%;
+  border: 1px solid #cccc;
+  border-radius: 10px;
+
+  .rbc-event {
+    background-color: none !important;
+  }
+}
+
+.bg-red {
+  background-color: red !important;
+}
+
+.bg-green {
+  background-color: #8FC594;
+}
+
+.bg-orange {
+  background-color: #ECA36F;
+}
+
+.bg-red {
+  background-color: #E56767;
 }

@@ -1,10 +1,49 @@
 const now = new Date()
 
+export const LEGEND_TYPE = [
+  {
+    id: 1,
+    type: 'cancel',
+    label: 'Cancelled'
+  },
+  {
+    id: 2,
+    type: 'pending',
+    label: 'Pending'
+  },
+  {
+    id: 3,
+    type: 'new',
+    label: 'New Request'
+  },
+  {
+    id: 4,
+    type: 'accepted',
+    label: 'Accepted'
+  },
+  {
+    id: 5,
+    type: 'completed',
+    label: 'Completed'
+  },
+]
+
+export const RESOURCE = [
+  {
+    id: 1,
+    name: 'James Tan',
+  },
+  {
+    id: 2,
+    name: 'Kenneth Goh'
+  },
+  {
+    id: 3, 
+    name: 'Adeline Tan'
+  }
+]
 // eslint-disable-next-line import/no-anonymous-default-export
 export default [
-  
-  
-
   {
     id: 2,
     title: 'DTS STARTS',
@@ -14,12 +53,25 @@ export default [
 
   {
     id: 6,
+    customer: 'Mr A',
+    agendar: 'Agenda',
     title: 'Coding',
     start: new Date(2023, 9, 23, 8, 30, 0, 0),
     end: new Date(2023, 9, 23, 9, 30, 0, 0),
     desc: 'Coding demo for project',
     resourceId: [1,2],
+    type: 'accepted'
   }, 
+
+
+
+
+
+
+
+
+
+
   {
     id: 6,
     title: 'Meeting',
