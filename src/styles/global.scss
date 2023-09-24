@@ -1,5 +1,5 @@
-@import 'react-big-calendar/lib/sass/styles';
-@import 'react-big-calendar/lib/addons/dragAndDrop/styles'; 
+@import "react-big-calendar/lib/sass/styles";
+@import "react-big-calendar/lib/addons/dragAndDrop/styles";
 
 .h-full {
   height: 100%;
@@ -18,12 +18,35 @@
 
 .filter-section {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  width: 80%;
+  float: right;
+  margin-bottom: 10px;
+
+  input {
+    width: 25%;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+
+    &::placeholder {
+      padding-left: 20px;
+    }
+  }
+
+  select {
+    width: 200px;
+    height: 30px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0 10px;
+  }
 }
 
 .calendar-page-container {
   display: flex;
-  width: 100vw;
+  width: 100%;
   justify-content: space-between;
 }
 
@@ -37,26 +60,72 @@
 
 .calendar-custome-wrapper {
   width: 80%;
+  height: 100vh;
+  overflow: auto;
   border: 1px solid #cccc;
   border-radius: 10px;
+
+  .rbc-calendar { 
+    height: 800px; 
+  }
+
+  .rbc-month-row {
+    display: inline-table !important;
+    flex: 0 0 0 !important;
+    min-height: 50px !important;
+  }
 
   .rbc-event {
     background-color: none !important;
   }
 }
 
-.bg-red {
-  background-color: red !important;
+.legend-category {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 40px;
+
+  p {
+    font-weight: bold;
+  }
+
+  .legend-item {
+    color: white;
+    font-weight: bold;
+    width: 115px;
+    height: 25px;
+    padding: 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+  }
+}
+
+.custome-event {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
 }
 
 .bg-green {
-  background-color: #8FC594;
+  background-color: #8fc594;
 }
 
 .bg-orange {
-  background-color: #ECA36F;
+  background-color: #eca36f;
 }
 
 .bg-red {
-  background-color: #E56767;
+  background-color: #e56767;
+}
+
+.bg-gray {
+  background-color: #b3b3b3;
+}
+
+.bg-blue {
+  background-color: #6eb3c9;
 }
