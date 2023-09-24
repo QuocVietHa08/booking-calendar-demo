@@ -9,7 +9,7 @@ const DragAndDropCalendar = withDragAndDrop(Calendar);
 function App() {
   const [myEvents, setMyEvents] = useState(events);
   const localizer = momentLocalizer(moment);
-
+  const [viewType, setViewType] = useState('day');
   const moveEvent = useCallback(
     ({ event, start, end, isAllDay: droppedOnAllDaySlot = false }) => {
       const { allDay } = event;
@@ -42,6 +42,22 @@ function App() {
   function eventStyleGetter(event, start, end, isSelected) {
     let bgColorHex = ''
     if (event.type === 'accepted') bgColorHex = '#8FC594'
+     
+    if (event.type === "pending") {
+      bgColorHex = "#eca36f";
+    }
+  
+    if (event.type === "new") {
+      bgColorHex = "#e56767";
+    }
+  
+    if (event.type === "cancel") {
+      bgColorHex = "#b3b3b3";
+    }
+  
+    if (event.type === "completed") {
+      bgColorHex = "#6eb3c9";
+    }
 
     var style = {
       backgroundColor: bgColorHex,
@@ -57,22 +73,30 @@ function App() {
     };
   }
 
+
+  const handleChangeEvent = (e) => {
+    const value = e.target.value;
+    const cloneEvent = [...events].filter((event) => (
+      event.resourceId == value
+    ))
+
+    setMyEvents(cloneEvent) 
+  }
+
   return (
     <div className="p-20">
-      <div>
-        <span>Lengend</span>
-        <span>Cancel</span>j<span>Pendin</span>
-        <span>New Request</span>
-        <span>Accepted</span>
-        <span>Complete</span>
+      <div className="legend-category">
+        <p>Legend:</p>
+        {LEGEND_TYPE.map((item) => {
+          return (
+          <div className={`legend-item ${item.color} `}>{item.label}</div>
+        )})}
       </div>
       <div className="filter-section">
-        <div>
           <input placeholder="Search project" />
-        </div>
         <div>Select date</div>
         <div>
-          <select>
+          <select onChange={handleChangeEvent}>
             {RESOURCE.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.name}
@@ -81,17 +105,17 @@ function App() {
           </select>
         </div>
         <div>
-          <select>
-            <option value="daily">Daily</option>
-            <option value="week">week</option>
+          <select value={viewType} onChange={(e) => setViewType(e.target.value)}>
+            <option value="week">Week</option>
+            <option value="day">Day</option>
           </select>
         </div>
-        <div>
+        {/* <div>
           <select>
             <option value="daily">1-5</option>
             <option value="week">6-10</option>
           </select>
-        </div>
+        </div> */}
       </div>
       <div className="calendar-page-container">
         <div className="filter-category">
@@ -100,8 +124,13 @@ function App() {
         </div>
         <div className="calendar-custome-wrapper">
           <DragAndDropCalendar
+            style={{
+              // width:'1000px',
+              height: '2700px'
+            }}
             defaultDate={defaultDate}
-            defaultView={Views.DAY}
+            // defaultView={viewType}
+            view={viewType}
             events={myEvents}
             localizer={localizer}
             onEventDrop={moveEvent}
@@ -131,19 +160,27 @@ const CustomEvent = ({ event }) => {
     bgColor = "bg-green";
   }
 
+  if (event.type === "pending") {
+    bgColor = "bg-orange";
+  }
+
+  if (event.type === "new") {
+    bgColor = "bg-red";
+  }
+
+  if (event.type === "cancel") {
+    bgColor = "bg-gray";
+  }
+
+  if (event.type === "completed") {
+    bgColor = "bg-blue";
+  }
+
   return (
-    <div className={`p-10 h-full radius-10 ${bgColor}`}>
-      <div>{event.title}</div>
-      <div>{event.type}</div>
+    <div className={`custome-event ${bgColor}`}>
+      <div>Customer: {event.customer}</div>
+      <div>Agenda: {event.agenda}</div>
+      <div>Time: {moment(event.start).format('HH:mm')} - {moment(event.end).format('HH:mm')}</div>
     </div>
   );
 };
-
-// const EventWrapperComponent = ({ event, children }) => {
-//   const newChildren = { ...children };
-//   const newChildrenProps = { ...newChildren.props };
-//   newChildrenProps.className = `${newChildrenProps.className} outline-none border-none bg-red`;
-//   newChildren.props = { ...newChildrenProps };
-
-//   return <div>{newChildren}</div>;
-// };
